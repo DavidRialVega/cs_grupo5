@@ -5,8 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 
 
@@ -14,16 +12,20 @@ import android.view.View;
 
 public class Lienzo extends View  {
 
-    Ball bola;
-    Paint paint;
+    private Ball bola;
+    private Paint paint;
+
+    private int width, height;
 
 
 
-    public Lienzo(Context context) {
+    public Lienzo(Context context, int w, int h) {
         super(context);
         paint = new Paint();
-        bola = new Ball(context);
+        bola = new Ball(context, w, h);
         Log.i("dime", getWidth() + " " + getHeight());
+        width = w;
+        height = h;
     }
 
 

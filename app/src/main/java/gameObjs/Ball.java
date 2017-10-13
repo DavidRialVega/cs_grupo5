@@ -11,21 +11,26 @@ import android.view.View;
 
 public class Ball extends View {
 
+    int dWidth, dHeight;
     int x, y, radio;
     int xSpeed, ySpeed;
     Paint paint;
 
-    public Ball(Context context) {
+    public Ball(Context context, int dispW, int dispH) {
         super(context);
 
-        x = 500 ;
-        y = 500;
+        dWidth = dispW;
+        dHeight = dispH;
+
+        x = dWidth / 2;
+        y = dHeight / 2;
+
+        radio = 50;
 
 
-        xSpeed = -5;
-        ySpeed = -5;
+        xSpeed = -2;
+        ySpeed = -2;
 
-        radio = 150;
 
 
         paint = new Paint();
@@ -46,10 +51,10 @@ public class Ball extends View {
         int nextPosY = y + ySpeed;
 
         Log.i("dim", getWidth() + " " + getHeight());
-        if ((nextPosX <= getWidth()) || (nextPosX <= -getWidth())  ){
+        if ((nextPosX >= dWidth - radio) || (nextPosX <= 0)){
             xSpeed = -xSpeed;
         }
-        if ((nextPosY <= getHeight()) || (nextPosY >= 0)) {
+        if ((nextPosY >= dHeight - radio) || (nextPosY <= 0)) {
             ySpeed = -ySpeed;
         }
         x += xSpeed;

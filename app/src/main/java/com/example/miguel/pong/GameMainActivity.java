@@ -24,7 +24,12 @@ public class GameMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lienzo = new Lienzo(this);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point ();
+        display.getSize(size);
+
+        lienzo = new Lienzo(this, size.x, size.y);
         setContentView(lienzo);
 
 
@@ -33,8 +38,8 @@ public class GameMainActivity extends AppCompatActivity {
 
     }
 
-    int i = 0;
 
+    // Esta funcion hace que cada x tiempo se ejecuten los metodos move e invalidate del lienzo. Invalidate fuerza que la pantalla se repinte
     final Handler handler = new Handler();
     Timer timer = new Timer();
 
@@ -58,16 +63,8 @@ public class GameMainActivity extends AppCompatActivity {
     {
         super.onResume();
 
+        timer.schedule(task, 0, 1);  //ejecutar en intervalo de 0.001 segundos.
 
-        timer.schedule(task, 0, 1);  //ejecutar en intervalo de 3 segundos.
-
-//        while (!estaEnPausa){
-//            lienzo.move();
-//            lienzo.invalidate();
-
-//        Log.d("hola", i + "");
-//
-//        i++;
     }
 
 
