@@ -48,11 +48,13 @@ public class GameMainActivity extends AppCompatActivity {
         public void run() {
             handler.post(new Runnable() {
                 public void run() {
-                    try {
-                        lienzo.move();
-                        lienzo.invalidate();
-                    } catch (Exception e) {
-                        Log.e("error", e.getMessage());
+                    if (!estaEnPausa) {
+                        try {
+                            lienzo.move();
+                            lienzo.invalidate();
+                        } catch (Exception e) {
+                            Log.e("error", e.getMessage());
+                        }
                     }
                 }
             });

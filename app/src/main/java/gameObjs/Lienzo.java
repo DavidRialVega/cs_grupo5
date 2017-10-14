@@ -14,35 +14,52 @@ public class Lienzo extends View  {
 
     private Ball bola;
     private Paint paint;
+    private JugadorPalaIzq leftPlayer;
+    private JugadorPalaDch rightPlayer;
 
     private int width, height;
+
+    public void reset () {
+        bola = new Ball(this.getContext(), width, height);
+        leftPlayer = new JugadorPalaIzq(this.getContext(), 100, height/2);
+        rightPlayer = new JugadorPalaDch(this.getContext(), width - 100, height/2);
+    }
 
 
 
     public Lienzo(Context context, int w, int h) {
         super(context);
         paint = new Paint();
-        bola = new Ball(context, w, h);
-        Log.i("dime", getWidth() + " " + getHeight());
         width = w;
         height = h;
-    }
 
+        reset();
+    }
 
     public void onDraw (Canvas canvas) {
         super.onDraw(canvas);
 
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.BLUE);
+        paint.setColor(Color.WHITE);
         canvas.drawPaint(paint);
 
         bola.draw(canvas);
+        leftPlayer.draw(canvas);
+        rightPlayer.draw(canvas);
 
-        //invalidate();
     }
 
     public void move(){
-        bola.move();
+        //Primero se mueven las barras y despues la pelota
+        leftPlayer.move(500, 500);
+        rightPlayer.move(bola.getPosX(), bola.getPosY(), width, height);
+
+        boolean reset = bola.move(leftPlayer, rightPlayer); //Se le pasan los jugadores para detectar las colisiones
+        // Para cuando se implementen los movimientos, al salir por los bordes se reseten los jugadores y la bola
+        /*if (reset){
+            reset();
+        }*/
+
     }
 
 
