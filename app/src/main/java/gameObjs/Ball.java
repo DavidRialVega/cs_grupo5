@@ -56,10 +56,7 @@ public class Ball extends View {
 
        //Choques laterales
         if ((nextPosX >= dWidth - rad) || (nextPosX <= 0)){
-
-            xSpeed = - xSpeed; // borrar cuando se implementen los movimientos
-            // Para cuando se implementen los movimientos, al salir por los bordes se reseten los jugadores y la bola
-            //return true;
+            return true;
         }
 
         //Choques superiores
