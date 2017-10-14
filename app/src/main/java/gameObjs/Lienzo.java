@@ -54,11 +54,11 @@ public class Lienzo extends View  {
         leftPlayer.move(500, 500);
         rightPlayer.move(bola.getPosX(), bola.getPosY(), width, height);
 
-        boolean reset = bola.move(leftPlayer, rightPlayer); //Se le pasan los jugadores para detectar las colisiones
-        // Para cuando se implementen los movimientos, al salir por los bordes se reseten los jugadores y la bola
-        /*if (reset){
+        boolean reset = bola.move(leftPlayer, rightPlayer); //Se le pasan los jugadores para detectar las colisiones. Si se sale del campo por los lados se reinicia
+
+        if (reset){
             reset();
-        }*/
+        }
 
     }
 
