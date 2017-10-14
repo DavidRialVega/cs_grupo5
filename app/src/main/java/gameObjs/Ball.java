@@ -28,7 +28,7 @@ public class Ball extends View {
         rad = 50;
 
 
-        xSpeed = -2;
+        xSpeed = 2;
         ySpeed = -2;
 
         paint = new Paint();

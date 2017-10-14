@@ -4,24 +4,23 @@ import android.content.Context;
 
 public class JugadorPalaDch extends PalaGeneral{
 
-    private int ySpeed = 1;
+    private int ySpeed = 2;
     public JugadorPalaDch(Context context, int posX, int posY) {
         super(context, posX, posY);
     }
 
     public void move (int xBall, int yBall, int widthCamp, int heightCamp){
-        //No va de momento
-       /* if (xBall > widthCamp / 2){ // en enemigo empieza a moverse cuando la bola pasa de mitad de campo. Movimiento muy simple
-            int y = this.getPosY() + this.getH() / 2;
-            if ((y < yBall) && (this.getPosY() + this.getH() + ySpeed <= heightCamp) ){
+        if (xBall > (widthCamp  / 2) + 300){ // el enemigo empieza a moverse cuando la bola pasa de mitad de campo + 300 px. Movimiento muy simple
+            int y = this.getPosY() + this.getH() / 2;  // se calcula a partir del centro de la pala
+            if ((y <= yBall) && (this.getPosY() + this.getH() + ySpeed <= heightCamp - 10 )  ){
                 this.setY(this.getPosY() + ySpeed);
             } else {
-                if (this.getPosY() >= 0) {
-                    this.setY(y - ySpeed);
+                if (this.getPosY() - ySpeed  >= 10) {
+                    this.setY(this.getPosY() - ySpeed);
                 }
             }
 
-        }*/
+        }
     }
 
 }
