@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
+import android.support.v4.view.MotionEventCompat;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,7 +20,6 @@ import gameObjs.Lienzo;
 public class GameMainActivity extends AppCompatActivity {
 
     Lienzo lienzo;
-
     boolean estaEnPausa;
 
     @Override
@@ -60,7 +61,22 @@ public class GameMainActivity extends AppCompatActivity {
             });
         }
     };
-
+    public boolean onTouchEvent(MotionEvent evento){
+        int action = evento.getAction();
+        int y =(int)evento.getY();
+        int x = (int)evento.getX();
+        lienzo.MoveLeft(x,y);
+        switch (action) {
+            case (MotionEvent.ACTION_DOWN):
+                break;
+            case (MotionEvent.ACTION_MOVE):
+                break;
+            case (MotionEvent.ACTION_UP):
+                break;
+        }
+        
+        return false;
+    }
     protected  void onResume()
     {
         super.onResume();

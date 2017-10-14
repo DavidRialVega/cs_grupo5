@@ -16,7 +16,8 @@ public class JugadorPalaIzq extends PalaGeneral {
         super(context, posX, posY);
     }
 
-    public void move(int x, int y) {
+    public void move(int x,int y) {
+        setY(y);
 
     }
 }

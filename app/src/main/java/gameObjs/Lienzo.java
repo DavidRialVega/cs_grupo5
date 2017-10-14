@@ -51,7 +51,7 @@ public class Lienzo extends View  {
 
     public void move(){
         //Primero se mueven las barras y despues la pelota
-        leftPlayer.move(500, 500);
+        //leftPlayer.move(500, 500);
         rightPlayer.move(bola.getPosX(), bola.getPosY(), width, height);
 
         boolean reset = bola.move(leftPlayer, rightPlayer); //Se le pasan los jugadores para detectar las colisiones. Si se sale del campo por los lados se reinicia
@@ -61,7 +61,7 @@ public class Lienzo extends View  {
         }
 
     }
-
+    public void MoveLeft(int x, int y){ leftPlayer.move(x,y); }
 
 
 
