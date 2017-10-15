@@ -10,5 +10,10 @@ Para llevar acabo este proceso Utilizaremos varias reuniones para acordar los ob
   Raúl
 - Scrum Master:
   Alejandro
-- Integrantes:
+- Integrantes: Iván, Jaime, Jose Francisco, Luís, Marcela y Miguel Ángel.
+
+## Mapas de Personalidad del Equipo
+
+## Trello del Equipo
+[Link al Trello](https://trello.com/b/CxU26Vmz/g7)
    
