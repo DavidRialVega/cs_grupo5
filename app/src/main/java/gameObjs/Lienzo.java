@@ -16,7 +16,7 @@ public class Lienzo extends View  {
     private Paint paint;
     private JugadorPalaIzq leftPlayer;
     private JugadorPalaDch rightPlayer;
-    private Marcador scoreBoard;
+    //private Marcador scoreBoard;
 
     private int width, height;
 
@@ -24,7 +24,7 @@ public class Lienzo extends View  {
         bola = new Ball(this.getContext(), width, height);
         leftPlayer = new JugadorPalaIzq(this.getContext(), 100, height/2);
         rightPlayer = new JugadorPalaDch(this.getContext(), width - 100, height/2);
-        scoreBoard = new Marcador(this.getContext(), width/2, height/2);
+        //scoreBoard = new Marcador(this.getContext(), width/2, height/2);
     }
 
 
@@ -59,7 +59,7 @@ public class Lienzo extends View  {
         boolean reset = bola.move(leftPlayer, rightPlayer); //Se le pasan los jugadores para detectar las colisiones. Si se sale del campo por los lados se reinicia
 
         if (reset){
-            scoreBoard.sumarPuntos();
+            //scoreBoard.sumarPuntos();
             reset();
         }
 
