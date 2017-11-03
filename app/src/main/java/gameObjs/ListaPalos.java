@@ -27,7 +27,7 @@ public class ListaPalos{
         return false;
     }
 
-    public void reset () {
+    public void reset () { // Reinicia las posiciones de todas las palas de la lista
         int size = enemyList.size();
         enemyList = new ArrayList<>();
         for (int i =0 ; i < size; i++) {
@@ -35,13 +35,13 @@ public class ListaPalos{
         }
     }
 
-    public void draw (Canvas canvas){
+    public void draw (Canvas canvas){ // Dibuja todas las palas
         for (PalaEnemiga pala: enemyList) {
             pala.draw(canvas);
         }
     }
 
-    public void add (){
+    public void add (){ //Anyade una pala nueva a la lista
         enemyList.add(new PalaEnemiga(context, dWidth, dHeight ));
     }
 }

@@ -18,14 +18,16 @@ public class PalaEnemiga extends PalaGeneral{
         super(context);
         dHeight = height;
         dWidth = width;
+
         Random r = new Random();
         if (r.nextBoolean()){ //Para elegir si ponerlo a la izq o la dch de la pantalla. True es izquierda y false derecha
-            setX(r.nextInt((dWidth/2) - (dWidth/8)) );
+            setX(r.nextInt((dWidth/2) - (dWidth/8)) ); // Zona "segura" en las inmediaciones de la pelota
         } else {
-            setX(r.nextInt((dWidth/2) - (dWidth/8)) + (dWidth/2) + (dWidth/8));
+            setX(r.nextInt((dWidth/2) - (dWidth/8)) + (dWidth/2) + (dWidth/8) - (getW() + 2)  );
         }
 
         setY(r.nextInt(dHeight - getH()));
+
         xSpeed = (r.nextInt(6)/2) - 3;
         ySpeed = (r.nextInt(6)/2) - 3;
 
@@ -54,6 +56,7 @@ public class PalaEnemiga extends PalaGeneral{
             ball.touched();
             return true;
         }
+
         setX(getPosX() + xSpeed);
         setY(getPosY() + ySpeed);
         rect.set(getPosX(), getPosY(), getPosX() + getW(), getPosY() + getH());
