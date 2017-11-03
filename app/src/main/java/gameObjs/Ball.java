@@ -27,10 +27,6 @@ public class Ball extends View {
 
         rad = 50;
 
-
-        xSpeed = 2;
-        ySpeed = -2;
-
         paint = new Paint();
     }
 
@@ -49,7 +45,13 @@ public class Ball extends View {
         canvas.drawOval(ball, paint);
     }
 
-    public boolean move(PalaGeneral left, PalaGeneral right){
+    public void move (int y){
+        if ((y > 0) && (y + rad < dHeight)) { //Si no se sale de los bordes horizontales se mueve
+            this.y = y;
+        }
+    }
+
+    /*public boolean move(PalaGeneral left, PalaGeneral right){
 
         int nextPosX = x + xSpeed;
         int nextPosY = y + ySpeed;
@@ -83,5 +85,7 @@ public class Ball extends View {
         x += xSpeed;
         y += ySpeed;
         return  false;
-    }
+    }*/
+
+
 }

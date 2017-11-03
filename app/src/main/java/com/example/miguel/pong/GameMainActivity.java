@@ -65,7 +65,7 @@ public class GameMainActivity extends AppCompatActivity {
         int action = evento.getAction();
         int y =(int)evento.getY();
         int x = (int)evento.getX();
-        lienzo.MoveLeft(x,y);
+        lienzo.moveBall(y);
         switch (action) {
             case (MotionEvent.ACTION_DOWN):
                 break;

@@ -12,7 +12,7 @@ import android.view.View;
 
 public class Lienzo extends View  {
 
-    private Ball bola;
+    private Ball ball;
     private Paint paint;
     private JugadorPalaIzq leftPlayer;
     private JugadorPalaDch rightPlayer;
@@ -21,7 +21,8 @@ public class Lienzo extends View  {
     private int width, height;
 
     public void reset () {
-        bola = new Ball(this.getContext(), width, height);
+        //if ()
+        ball = new Ball(this.getContext(), width, height);
         leftPlayer = new JugadorPalaIzq(this.getContext(), 100, height/2);
         rightPlayer = new JugadorPalaDch(this.getContext(), width - 100, height/2);
         //scoreBoard = new Marcador(this.getContext(), width/2, height/2);
@@ -45,7 +46,7 @@ public class Lienzo extends View  {
         paint.setColor(Color.WHITE);
         canvas.drawPaint(paint);
 
-        bola.draw(canvas);
+        ball.draw(canvas);
         leftPlayer.draw(canvas);
         rightPlayer.draw(canvas);
 
@@ -53,18 +54,16 @@ public class Lienzo extends View  {
 
     public void move(){
         //Primero se mueven las barras y despues la pelota
-        //leftPlayer.move(500, 500);
-        rightPlayer.move(bola.getPosX(), bola.getPosY(), width, height);
+        rightPlayer.move(ball.getPosX(), ball.getPosY(), width, height);
 
-        boolean reset = bola.move(leftPlayer, rightPlayer); //Se le pasan los jugadores para detectar las colisiones. Si se sale del campo por los lados se reinicia
-
+        boolean reset = false; // De momento se queda asi.
         if (reset){
             //scoreBoard.sumarPuntos();
             reset();
         }
 
     }
-    public void MoveLeft(int x, int y){ leftPlayer.move(x,y); }
+    public void moveBall(int y){ ball.move(y); }
 
 
 
