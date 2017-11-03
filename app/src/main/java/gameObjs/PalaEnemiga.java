@@ -2,6 +2,8 @@ package gameObjs;
 
 import android.content.Context;
 import android.graphics.RadialGradient;
+import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -10,6 +12,7 @@ public class PalaEnemiga extends PalaGeneral{
     private int ySpeed;
     private int xSpeed;
     private int dWidth, dHeight;
+    private RectF rect;
 
     public PalaEnemiga(Context context, int width, int height) {
         super(context);
@@ -26,14 +29,14 @@ public class PalaEnemiga extends PalaGeneral{
         xSpeed = (r.nextInt(6)/2) - 3;
         ySpeed = (r.nextInt(6)/2) - 3;
 
+        rect = new RectF(getPosX(), getPosY(), getPosX() + getW(), getPosY() + getH());
 
     }
 
-    public void move (Ball ball){
+    public boolean move (Ball ball){
         int nextPosX = getPosX() + xSpeed;
         int nextPosY = getPosY() + ySpeed;
-
-
+        rect.set(nextPosX, nextPosY, nextPosX + getW(), nextPosY + getH());
 
         //Choques laterales
         if ((nextPosX > dWidth - getW()) || (nextPosX <= 0)){
@@ -45,29 +48,17 @@ public class PalaEnemiga extends PalaGeneral{
             ySpeed = -ySpeed;
         }
 
+        //Choques con la pelota
 
-
-        /*//Choques palas
-        //Choque pala izq
-        if ((nextPosX <= left.getPosX() + left.getW()) && (nextPosX  + rad >= left.getPosX())) //comprobacion de chqoue en las x
-        {
-            if ((nextPosY <= left.getPosY() + left.getH()) && (nextPosY >= left.getPosY())){  //comprobacion de choque en las y
-                xSpeed = - xSpeed;
-            }
-        } else // No puede chocar con dos palas a la vez
-            //Choque pala derecha
-            if ((nextPosX + rad >= right.getPosX()) && (nextPosX + rad <= right.getPosX() + right.getW())) { //comprobacion de chqoue en las x
-                if ((nextPosY <= right.getPosY() + right.getH()) && (nextPosY >= right.getPosY())){  //comprobacion de choque en las y
-                    xSpeed = - xSpeed;
-                }
-            }
-
-        //avance de la bola
-        x += xSpeed;
-        y += ySpeed;
-        return  false;*/
+        if (rect.intersect(ball.getRect())) {
+            ball.touched();
+            return true;
+        }
         setX(getPosX() + xSpeed);
         setY(getPosY() + ySpeed);
+        rect.set(getPosX(), getPosY(), getPosX() + getW(), getPosY() + getH());
+
+        return false;
     }
 
 }

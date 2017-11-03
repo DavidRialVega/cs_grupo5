@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
 
 
@@ -18,22 +19,31 @@ public class Lienzo extends View  {
 
     private int width, height;
 
-    public void reset () {
-        //if ()
-        ball = new Ball(this.getContext(), width, height);
-        listaPalos = new ListaPalos(this.getContext(), width, height);
-    }
-
-    public void addPalo () {
-        listaPalos.add();
-    }
 
     public Lienzo(Context context, int w, int h) {
         super(context);
         paint = new Paint();
         width = w;
         height = h;
-        reset();
+        ball = new Ball(this.getContext(), width, height);
+        listaPalos = new ListaPalos(this.getContext(), width, height);
+    }
+
+    public void reset () {
+        if (ball.getLifes() > 0){
+            ball.setX(width/2);
+            ball.setY(height/2);
+            listaPalos.reset();
+        }
+        else {
+            ball = new Ball(this.getContext(), width, height);
+            listaPalos = new ListaPalos(this.getContext(), width, height);
+            addPalo();
+        }
+    }
+
+    public void addPalo () {
+        listaPalos.add();
     }
 
     public void onDraw (Canvas canvas) {
@@ -50,11 +60,8 @@ public class Lienzo extends View  {
 
     public void move(){
         //Primero se mueven las barras y despues la pelota
-        listaPalos.move(ball);
-
-        boolean reset = false; // De momento se queda asi.
-        if (reset){
-            //scoreBoard.sumarPuntos();
+        if (listaPalos.move(ball))
+        {
             reset();
         }
 
