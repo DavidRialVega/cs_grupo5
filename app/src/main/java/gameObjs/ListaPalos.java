@@ -18,9 +18,20 @@ public class ListaPalos{
         enemyList = new ArrayList<>();
     }
 
-    public void move (Ball ball) { //Se le pasa la bola para comprobar las colisiones
+    public boolean move (Ball ball) { //Se le pasa la bola para comprobar las colisiones
         for (PalaEnemiga pala: enemyList) {
-            pala.move(ball);
+            if (pala.move(ball)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void reset () {
+        int size = enemyList.size();
+        enemyList = new ArrayList<>();
+        for (int i =0 ; i < size; i++) {
+            enemyList.add(new PalaEnemiga(context, dWidth, dHeight));
         }
     }
 
