@@ -14,13 +14,11 @@ public class PalaGeneral extends View {
     private int x, y, width, height;
     private Paint paint;
 
-    public PalaGeneral(Context context, int posX, int posY){
+    public PalaGeneral(Context context){
         super(context);
 
         width = 40;
         height = 200;
-        x = posX;
-        y = posY - width/2;
         paint = new Paint();
     }
 
@@ -40,9 +38,10 @@ public class PalaGeneral extends View {
         return y;
     }
 
-    public void setY( int posY){
+    protected void setY( int posY){
         y = posY;
     }
+    protected  void setX (int posX) {x = posX;}
 
 
     public void  draw (Canvas canvas){

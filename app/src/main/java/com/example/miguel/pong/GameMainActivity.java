@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.support.v4.view.MotionEventCompat;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,8 +20,8 @@ import gameObjs.Lienzo;
 
 public class GameMainActivity extends AppCompatActivity {
 
-    Lienzo lienzo;
-    boolean estaEnPausa;
+    private Lienzo lienzo;
+    private boolean estaEnPausa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class GameMainActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 public void run() {
                     if (!estaEnPausa) {
-                        try {
+                        try{
                             lienzo.move();
                             lienzo.invalidate();
                         } catch (Exception e) {
@@ -61,6 +62,19 @@ public class GameMainActivity extends AppCompatActivity {
             });
         }
     };
+
+    TimerTask addPalosTask = new TimerTask() {
+        @Override
+        public void run() {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    lienzo.addPalo();
+                }
+            });
+        }
+    };
+
     public boolean onTouchEvent(MotionEvent evento){
         int action = evento.getAction();
         int y =(int)evento.getY();
@@ -81,8 +95,8 @@ public class GameMainActivity extends AppCompatActivity {
     {
         super.onResume();
 
-        timer.schedule(task, 0, 1);  //ejecutar en intervalo de 0.001 segundos.
-
+        timer.schedule(task, 0, 2);  //ejecutar en intervalo de 0.001 segundos.
+        timer.schedule(addPalosTask, 0, 10000);
     }
 
 
