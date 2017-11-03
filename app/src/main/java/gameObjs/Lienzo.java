@@ -59,7 +59,7 @@ public class Lienzo extends View  {
     }
 
     public void move(){
-        //Primero se mueven las barras y despues la pelota
+
         if (listaPalos.move(ball))
         {
             reset();

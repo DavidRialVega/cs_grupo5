@@ -96,7 +96,7 @@ public class GameMainActivity extends AppCompatActivity {
         super.onResume();
 
         timer.schedule(task, 0, 2);  //ejecutar en intervalo de 0.001 segundos.
-        timer.schedule(addPalosTask, 0, 10000);
+        timer.schedule(addPalosTask, 0, 10000); //Cada 10 segundos se añade una pala nueva
     }
 
 
