@@ -17,6 +17,7 @@ public class Ball extends View {
     private Paint paint;
     private int lifes;
     private RectF rect;
+    int [] color = {Color.rgb(200, 20, 20), Color.rgb(255, 217 , 15), Color.rgb(30, 180, 30)}; //Rojo, amarillo y verde
 
     public Ball(Context context, int dispW, int dispH) {
         super(context);
@@ -24,10 +25,11 @@ public class Ball extends View {
         dWidth = dispW;
         dHeight = dispH;
 
+
         x = dWidth / 2;
         y = dHeight / 2;
 
-        rad = 50;
+        rad = 65;
 
         rect = new RectF(x, y , x+rad, y+ rad);
 
@@ -47,7 +49,7 @@ public class Ball extends View {
 
     public void draw(Canvas canvas){
         super.draw(canvas);
-        paint.setColor(Color.GRAY);
+        paint.setColor(color[lifes-1]);
         paint.setAntiAlias(true);
         canvas.drawOval(rect, paint);
     }
