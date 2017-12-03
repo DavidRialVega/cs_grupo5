@@ -44,13 +44,12 @@ public class PalaGeneral extends View {
     protected  void setX (int posX) {x = posX;}
 
 
-    public void  draw (Canvas canvas){
+    public void  draw (Canvas canvas) {
         super.draw(canvas);
         paint.setColor(Color.BLACK);
         paint.setAntiAlias(true);
-        RectF pala = new RectF(x, y, x + width, y + height );
+        RectF pala = new RectF(x, y, x + width, y + height);
         canvas.drawRect(pala, paint);
     }
-
 
 }

@@ -63,27 +63,16 @@ public class GameMainActivity extends AppCompatActivity {
         }
     };
 
-    TimerTask addPalosTask = new TimerTask() {
-        @Override
-        public void run() {
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    lienzo.addPalo();
-                }
-            });
-        }
-    };
 
     public boolean onTouchEvent(MotionEvent evento){
         int action = evento.getAction();
         int y =(int)evento.getY();
         int x = (int)evento.getX();
-        lienzo.moveBall(y);
         switch (action) {
             case (MotionEvent.ACTION_DOWN):
                 break;
             case (MotionEvent.ACTION_MOVE):
+                lienzo.movePlayer(x, y);
                 break;
             case (MotionEvent.ACTION_UP):
                 break;
@@ -95,8 +84,7 @@ public class GameMainActivity extends AppCompatActivity {
     {
         super.onResume();
 
-        timer.schedule(task, 0, 2);  //ejecutar en intervalo de 0.001 segundos.
-        timer.schedule(addPalosTask, 0, 10000); //Cada 10 segundos se añade una pala nueva
+        timer.schedule(task, 0, 2);  //ejecutar en intervalo de 0.002 segundos
     }
 
 
