@@ -8,6 +8,8 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.view.View;
 
+import java.util.Random;
+
 
 public class Ball extends View {
 
@@ -24,12 +26,20 @@ public class Ball extends View {
 
         dWidth = dispW;
         dHeight = dispH;
-
-
-        x = dWidth / 2;
-        y = dHeight / 2;
-
         rad = 65;
+
+
+        Random r = new Random();
+        if (r.nextBoolean()){ //Para elegir si ponerlo a la izq o la dch de la pantalla. True es izquierda y false derecha
+            setX(r.nextInt((dWidth/2) - (dWidth/8)) ); // Zona "segura" en las inmediaciones de la pelota
+        } else {
+            setX(r.nextInt((dWidth/2) - (dWidth/8)) + (dWidth/2) + (dWidth/8) - (rad + 2)  );
+        }
+
+        setY(r.nextInt(dHeight - rad));
+
+        xSpeed = (r.nextInt(6)/2) - 3;
+        ySpeed = (r.nextInt(6)/2) - 3;
 
         rect = new RectF(x, y , x+rad, y+ rad);
 
@@ -54,11 +64,17 @@ public class Ball extends View {
         canvas.drawOval(rect, paint);
     }
 
-    public void move (int y){
+    public boolean move (PalaJugador pala){
         if ((y > 0) && (y + rad < dHeight)) { //Si no se sale de los bordes horizontales se mueve
             this.y = y;
             rect.set(x, y , x+rad, y+ rad);
         }
+
+        if (rect.intersect(pala.getRect())) {
+            //ball.touched();
+            return true;
+        }
+        return false;
     }
 
     public RectF getRect(){

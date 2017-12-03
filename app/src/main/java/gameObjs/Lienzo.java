@@ -14,7 +14,7 @@ public class Lienzo extends View  {
 
     private Ball ball;
     private Paint paint;
-    private ListaPalos listaPalos;
+    private PalaJugador jugador;
     //private Marcador scoreBoard;
 
     private int width, height;
@@ -26,24 +26,23 @@ public class Lienzo extends View  {
         width = w;
         height = h;
         ball = new Ball(this.getContext(), width, height);
-        listaPalos = new ListaPalos(this.getContext(), width, height);
+        jugador = new PalaJugador(this.getContext(), width, height);
     }
 
     public void reset () {
         if (ball.getLifes() > 0){
             ball.setX(width/2);
             ball.setY(height/2);
-            listaPalos.reset();
+            //listaPalos.reset();
         }
         else {
             ball = new Ball(this.getContext(), width, height);
-            listaPalos = new ListaPalos(this.getContext(), width, height);
             addPalo();
         }
     }
 
     public void addPalo () {
-        listaPalos.add();
+        //listaPalos.add();
     }
 
     public void onDraw (Canvas canvas) {
@@ -52,24 +51,21 @@ public class Lienzo extends View  {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
         canvas.drawPaint(paint);
-
+        jugador.draw(canvas);
         ball.draw(canvas);
-        listaPalos.draw(canvas);
-
     }
 
     public void move(){
-
-        if (listaPalos.move(ball))
+        /*
+        if (ball.move(jugador))
         {
             reset();
         }
-
+        */
     }
-    public void moveBall(int y){
-        ball.move(y);
+    public void movePlayer (int x, int y){
+        jugador.move(x, y);
+        Log.println(Log.WARN, "movement", x + " " + y);
     }
-
-
 
 }
