@@ -132,6 +132,7 @@ public class Ball extends View {
         //Choques laterales
         if ((nextPosX >= dWidth - rad) || (nextPosX <= 0)){
             xSpeed = -xSpeed;
+            
         }
 
         //Choques superiores
