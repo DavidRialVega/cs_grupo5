@@ -30,15 +30,8 @@ public class Lienzo extends View  {
     }
 
     public void reset () {
-        if (ball.getLifes() > 0){
-            ball.setX(width/2);
-            ball.setY(height/2);
-            //listaPalos.reset();
-        }
-        else {
-            ball = new Ball(this.getContext(), width, height);
-            addPalo();
-        }
+        ball = new Ball(this.getContext(), width, height);
+        jugador = new PalaJugador(this.getContext(), width, height);
     }
 
     public void addPalo () {
@@ -62,6 +55,10 @@ public class Lienzo extends View  {
             reset();
         }
         */
+        boolean reset = ball.move(jugador);
+        if(reset){
+            reset();
+        }
     }
     public void movePlayer (int x, int y){
         jugador.move(x, y);
