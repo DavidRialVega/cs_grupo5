@@ -18,7 +18,7 @@ public class PalaJugador extends PalaGeneral{
         dHeight = height;
         dWidth = width;
 
-        xSpeed = 10;
+        xSpeed = 15;
         ySpeed = xSpeed;
 
         setX(dWidth/2);
