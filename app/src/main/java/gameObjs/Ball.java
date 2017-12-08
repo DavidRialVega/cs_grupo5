@@ -89,6 +89,7 @@ public class Ball extends View {
     private int x, y, rad;
     private int xSpeed, ySpeed;
     private Paint paint;
+    private boolean cubo;
 
     public Ball(Context context, int dispW, int dispH) {
         super(context);
@@ -101,7 +102,7 @@ public class Ball extends View {
 
         rad = 50;
 
-
+        cubo = false;
         xSpeed = 3;
         ySpeed = -3;
 
@@ -120,7 +121,12 @@ public class Ball extends View {
         paint.setColor(Color.GRAY);
         paint.setAntiAlias(true);
         RectF ball = new RectF(x, y , x+rad, y+ rad);
-        canvas.drawOval(ball, paint);
+        if (cubo) {
+            canvas.drawRect(ball,paint);
+        }
+        else {
+            canvas.drawOval(ball, paint);
+        }
     }
 
     public boolean move(PalaJugador left){
@@ -209,7 +215,14 @@ public class Ball extends View {
                 }
             }
         }
-
+        if ((nextPosX >= dWidth - rad) || (nextPosX <= 0) || (nextPosY >= dHeight - rad) || (nextPosY <= 0)){
+            if (cubo){
+                cubo = false;
+            }
+            else {
+                cubo = true;
+            }
+        }
         //Choques palas
         //Choque pala izq
         if ((nextPosX <= left.getPosX() + left.getW()) && (nextPosX  + rad >= left.getPosX()) ) //comprobacion de chqoue en las x
