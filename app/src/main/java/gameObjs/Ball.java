@@ -102,8 +102,8 @@ public class Ball extends View {
         rad = 50;
 
 
-        xSpeed = 2;
-        ySpeed = -2;
+        xSpeed = 3;
+        ySpeed = -3;
 
         paint = new Paint();
     }
@@ -129,15 +129,85 @@ public class Ball extends View {
         int nextPosX = x + xSpeed;
         int nextPosY = y + ySpeed;
 
+        int numero = (int) (Math.random() * (dWidth-rad)); // Para aparecer por cualquier lado;
+        int opcion = (int) (Math.random() * 4)+1;
         //Choques laterales
         if ((nextPosX >= dWidth - rad) || (nextPosX <= 0)){
-            xSpeed = -xSpeed;
-            
+            ySpeed=-ySpeed;
+            if((nextPosX <= 0)) {
+                if (opcion == 1) {
+                    x = dWidth - rad;
+                    y = numero + rad;
+                }
+                if (opcion == 2) {
+                    x = numero + rad;
+                    y = 0 + rad;
+                }
+                if (opcion == 3) {
+                    x = numero + rad;
+                    y = dHeight - rad;
+                }
+                if (opcion == 4) {
+                    xSpeed = -xSpeed;
+                }
+            }
+            else if((nextPosX >= dWidth - rad)){
+                if (opcion == 1) {
+                    xSpeed = -xSpeed;
+                }
+                if (opcion == 2) { // superior
+                    x = numero + rad;
+                    y = 0 + rad;
+                }
+                if (opcion == 3) { // inferior
+                    x = numero + rad;
+                    y = dHeight - rad;
+                }
+                if (opcion == 4) {
+                    x = 0 + rad;
+                    y = numero + rad;
+                }
+            }
         }
-
+        opcion = (int) (Math.random() * 4)+1;
         //Choques superiores
         if ((nextPosY >= dHeight - rad) || (nextPosY <= 0)) {
-            ySpeed = -ySpeed;
+            //ySpeed = -ySpeed;
+            xSpeed = -xSpeed;
+            if((nextPosY <= 0)){
+                if (opcion == 1) {
+                    x = dWidth - rad;
+                    y = numero + rad;
+                }
+                if (opcion == 2) { // superior
+                    x = numero + rad;
+                    y = 0 + rad;
+                }
+                if (opcion == 3) { // inferior
+                    ySpeed=-ySpeed;
+                }
+                if (opcion == 4) {
+                    x = 0 + rad;
+                    y = numero + rad;
+                }
+            }
+            else if((nextPosY >= dHeight - rad)){
+                if (opcion == 1) {
+                    x = dWidth - rad;
+                    y = numero + rad;
+                }
+                if (opcion == 2) { // superior
+                    ySpeed = -ySpeed;
+                }
+                if (opcion == 3) { // inferior
+                    x = numero + rad;
+                    y = dHeight - rad;
+                }
+                if (opcion == 4) {
+                    x = 0 + rad;
+                    y = numero + rad;
+                }
+            }
         }
 
         //Choques palas
