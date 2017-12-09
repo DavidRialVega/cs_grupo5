@@ -49,6 +49,11 @@ public class Lienzo extends View  {
             canvas.drawPaint(paint);
             jugador.draw(canvas);
             ball.draw(canvas);
+            paint.setTextSize(height/20);
+            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setColor(Color.RED);
+            canvas.drawText("Balas: " + jugador.balasRestantes(), width / 2, height / 15, paint);
+
         } else {
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.WHITE);
@@ -74,7 +79,7 @@ public class Lienzo extends View  {
     public void move(){
         win = jugador.moveBullets(ball);
         boolean reset = ball.move(jugador);
-        if(reset){
+        if(reset || ((jugador.balasRestantes() <= 0) && (jugador.todasBalasFuera()) )){
             gameOver = true;
         } else if (win){
             gameOver = true;

@@ -112,4 +112,18 @@ public class PalaJugador extends PalaGeneral{
         }
     }
 
+    public int balasRestantes (){
+        return maxBullets - bullets.size();
+    }
+
+    public boolean todasBalasFuera(){
+        int c = 0;
+        for (Bullet bala: bullets){
+            if (!bala.isOnScreen()){
+                c++;
+            }
+        }
+        return c == maxBullets;
+    }
+
 }
