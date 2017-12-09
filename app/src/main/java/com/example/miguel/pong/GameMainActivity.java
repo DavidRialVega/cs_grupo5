@@ -66,13 +66,23 @@ public class GameMainActivity extends AppCompatActivity {
 
     public boolean onTouchEvent(MotionEvent evento){
         int action = evento.getAction();
-        int y =(int)evento.getY();
-        int x = (int)evento.getX();
+        int pointerIndex = evento.getActionIndex();
+        int pointerID = evento.getPointerId(pointerIndex);
+        int x; int y;
         switch (action) {
             case (MotionEvent.ACTION_DOWN):
+                if (pointerIndex == 1){
+                    y =(int)evento.getY(pointerIndex);
+                    x = (int)evento.getX(pointerIndex);
+                    lienzo.shootBullet(x, y);
+                }
                 break;
             case (MotionEvent.ACTION_MOVE):
-                lienzo.movePlayer(x, y);
+                if (pointerIndex == 0 ) {
+                    y = (int) evento.getY(pointerIndex);
+                    x = (int) evento.getX(pointerIndex);
+                    lienzo.movePlayer(x, y);
+                }
                 break;
             case (MotionEvent.ACTION_UP):
                 break;

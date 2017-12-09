@@ -19,7 +19,6 @@ public class Lienzo extends View  {
 
     private int width, height;
 
-
     public Lienzo(Context context, int w, int h) {
         super(context);
         paint = new Paint();
@@ -49,20 +48,21 @@ public class Lienzo extends View  {
     }
 
     public void move(){
-        /*
-        if (ball.move(jugador))
-        {
-            reset();
-        }
-        */
+        boolean win = jugador.moveBullets(ball);
         boolean reset = ball.move(jugador);
         if(reset){
             reset();
+        } else if (win){
+            Log.println(Log.WARN, "WIN", "Has atinao premoh ");
         }
     }
     public void movePlayer (int x, int y){
         jugador.move(x, y);
         Log.println(Log.WARN, "movement", x + " " + y);
+    }
+
+    public void shootBullet (int xFin, int yFin){
+        jugador.shoot(xFin, yFin);
     }
 
 }

@@ -77,9 +77,7 @@ public class Ball extends View {
         return false;
     }
 
-    public RectF getRect(){
-        return this.rect;
-    }
+
 
     public void touched (){
         lifes--;
@@ -90,6 +88,7 @@ public class Ball extends View {
     private int xSpeed, ySpeed;
     private Paint paint;
     private boolean cubo;
+    private RectF rect;
 
     public Ball(Context context, int dispW, int dispH) {
         super(context);
@@ -97,8 +96,8 @@ public class Ball extends View {
         dWidth = dispW;
         dHeight = dispH;
 
-        x = dWidth / 2;
-        y = dHeight / 2;
+        x = dWidth / 4;
+        y = dHeight / 4;
 
         rad = 50;
 
@@ -106,6 +105,7 @@ public class Ball extends View {
         xSpeed = 3;
         ySpeed = -3;
 
+        rect = new RectF(x, y , x+rad, y+ rad);
         paint = new Paint();
     }
 
@@ -120,12 +120,11 @@ public class Ball extends View {
         super.draw(canvas);
         paint.setColor(Color.GRAY);
         paint.setAntiAlias(true);
-        RectF ball = new RectF(x, y , x+rad, y+ rad);
         if (cubo) {
-            canvas.drawRect(ball,paint);
+            canvas.drawOval(rect, paint);
         }
         else {
-            canvas.drawOval(ball, paint);
+            canvas.drawOval(rect, paint);
         }
     }
 
@@ -243,6 +242,11 @@ public class Ball extends View {
         //avance de la bola
         x += xSpeed;
         y += ySpeed;
+        rect.set(x, y , x+rad, y+ rad);
         return  toque;
+    }
+
+    public RectF getRect(){
+        return this.rect;
     }
 }
