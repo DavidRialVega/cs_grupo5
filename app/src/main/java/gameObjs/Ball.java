@@ -121,7 +121,7 @@ public class Ball extends View {
         paint.setColor(Color.GRAY);
         paint.setAntiAlias(true);
         if (cubo) {
-            canvas.drawOval(rect, paint);
+            canvas.drawRect(rect, paint);
         }
         else {
             canvas.drawOval(rect, paint);
