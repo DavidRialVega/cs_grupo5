@@ -36,7 +36,7 @@ public class PalaJugador extends PalaGeneral{
         rect = new RectF(getPosX(), getPosY(), getPosX() + getW(), getPosY() + getH());
 
         bullets = new ArrayList<>();
-        maxBullets = 5;
+        maxBullets = 500;
     }
 
     public void move (int x, int y){
@@ -100,13 +100,12 @@ public class PalaJugador extends PalaGeneral{
         }
         return  false;
     }
-
+    @Override
     public void draw (Canvas canvas){
         super.draw(canvas);
         for (Bullet bala : bullets){
-            if (bala.isOnScreen()) {
                 bala.draw(canvas);
-            }
+
         }
     }
 

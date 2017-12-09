@@ -99,11 +99,11 @@ public class Ball extends View {
         x = dWidth / 4;
         y = dHeight / 4;
 
-        rad = 50;
+        rad = 80;
 
         cubo = false;
-        xSpeed = 3;
-        ySpeed = -3;
+        xSpeed = 2;
+        ySpeed = 2;
 
         rect = new RectF(x, y , x+rad, y+ rad);
         paint = new Paint();
