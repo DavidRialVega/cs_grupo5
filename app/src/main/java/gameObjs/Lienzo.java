@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 
@@ -18,6 +19,7 @@ public class Lienzo extends View  {
     //private Marcador scoreBoard;
 
     private int width, height;
+    boolean gameOver, win;
 
     public Lienzo(Context context, int w, int h) {
         super(context);
@@ -26,34 +28,56 @@ public class Lienzo extends View  {
         height = h;
         ball = new Ball(this.getContext(), width, height);
         jugador = new PalaJugador(this.getContext(), width, height);
+
+        gameOver = false;
+        win = false;
     }
 
     public void reset () {
+        gameOver = false;
+        win = false;
         ball = new Ball(this.getContext(), width, height);
         jugador = new PalaJugador(this.getContext(), width, height);
     }
 
-    public void addPalo () {
-        //listaPalos.add();
-    }
 
     public void onDraw (Canvas canvas) {
         super.onDraw(canvas);
+        if (!gameOver) {
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(Color.WHITE);
+            canvas.drawPaint(paint);
+            jugador.draw(canvas);
+            ball.draw(canvas);
+        } else {
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(Color.WHITE);
+            canvas.drawPaint(paint);
+            paint.setAntiAlias(true);
+            paint.setTextSize(height/8);
+            paint.setTextAlign(Paint.Align.CENTER);
+            if (win){
+                paint.setColor(Color.GREEN);
+                canvas.drawText("VICTORIA!", width / 2, height / 2, paint);
+                win = false;
+            } else {
+                paint.setColor(Color.BLUE);
+                canvas.drawText("GAME OVER...", width / 2, height / 2, paint);
+            }
+        }
+    }
 
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
-        canvas.drawPaint(paint);
-        jugador.draw(canvas);
-        ball.draw(canvas);
+    public boolean isGameOver (){
+        return gameOver;
     }
 
     public void move(){
-        boolean win = jugador.moveBullets(ball);
+        win = jugador.moveBullets(ball);
         boolean reset = ball.move(jugador);
         if(reset){
-            reset();
+            gameOver = true;
         } else if (win){
-            Log.println(Log.WARN, "WIN", "Has atinao premoh ");
+            gameOver = true;
         }
     }
     public void movePlayer (int x, int y){
@@ -62,7 +86,9 @@ public class Lienzo extends View  {
     }
 
     public void shootBullet (int xFin, int yFin){
-        jugador.shoot(xFin, yFin);
+        if (jugador.shoot(xFin, yFin)){
+            gameOver = true;
+        }
     }
 
 }

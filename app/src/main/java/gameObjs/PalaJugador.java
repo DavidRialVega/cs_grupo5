@@ -36,7 +36,7 @@ public class PalaJugador extends PalaGeneral{
         rect = new RectF(getPosX(), getPosY(), getPosX() + getW(), getPosY() + getH());
 
         bullets = new ArrayList<>();
-        maxBullets = 500;
+        maxBullets = 5;
     }
 
     public void move (int x, int y){
@@ -86,9 +86,12 @@ public class PalaJugador extends PalaGeneral{
         return this.rect;
     }
 
-    public void shoot (int xFin, int yFin){
+    public boolean shoot (int xFin, int yFin){
         if (bullets.size() < maxBullets){
             bullets.add(new Bullet(this.c, dWidth, dHeight, this.getPosX() + this.getW()/2, this.getPosY() + this.getH()/2, xFin, yFin ));
+            return false;
+        } else {
+            return true;
         }
     }
 
