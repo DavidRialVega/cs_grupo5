@@ -1,10 +1,12 @@
 package gameObjs;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PalaJugador extends PalaGeneral{
@@ -12,9 +14,14 @@ public class PalaJugador extends PalaGeneral{
     private int ySpeed, xSpeed, antX, antY;
     private int dWidth, dHeight;
     private RectF rect;
+    private int maxBullets;
+    Context c;
+
+    private ArrayList<Bullet> bullets;
 
     public PalaJugador(Context context, int width, int height) {
         super(context);
+        c = context;
         dHeight = height;
         dWidth = width;
 
@@ -28,6 +35,8 @@ public class PalaJugador extends PalaGeneral{
 
         rect = new RectF(getPosX(), getPosY(), getPosX() + getW(), getPosY() + getH());
 
+        bullets = new ArrayList<>();
+        maxBullets = 500;
     }
 
     public void move (int x, int y){
@@ -75,6 +84,29 @@ public class PalaJugador extends PalaGeneral{
 
     public RectF getRect (){
         return this.rect;
+    }
+
+    public void shoot (int xFin, int yFin){
+        if (bullets.size() < maxBullets){
+            bullets.add(new Bullet(this.c, dWidth, dHeight, this.getPosX() + this.getW()/2, this.getPosY() + this.getH()/2, xFin, yFin ));
+        }
+    }
+
+    public boolean moveBullets (Ball ball) {
+        for (Bullet bala : bullets){
+            if (bala.move(ball)){
+                return true;
+            }
+        }
+        return  false;
+    }
+    @Override
+    public void draw (Canvas canvas){
+        super.draw(canvas);
+        for (Bullet bala : bullets){
+                bala.draw(canvas);
+
+        }
     }
 
 }
