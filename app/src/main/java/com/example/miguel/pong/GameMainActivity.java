@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,8 @@ public class GameMainActivity extends AppCompatActivity {
 
     }
 
+    private Long time;
+
 
     // Esta funcion hace que cada x tiempo se ejecuten los metodos move e invalidate del lienzo. Invalidate fuerza que la pantalla se repinte
     final Handler handler = new Handler();
@@ -51,11 +54,16 @@ public class GameMainActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 public void run() {
                     if (!estaEnPausa) {
-                        try{
                             lienzo.move();
                             lienzo.invalidate();
-                        } catch (Exception e) {
-                            Log.e("error", e.getMessage());
+                            if (lienzo.isGameOver()){
+                                time = System.currentTimeMillis();
+                                estaEnPausa = true;
+                            }
+                    } else {
+                        if (System.currentTimeMillis() - time > 3000){
+                            estaEnPausa = false;
+                            lienzo.reset();
                         }
                     }
                 }
