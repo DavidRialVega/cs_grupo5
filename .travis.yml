@@ -31,8 +31,8 @@ install:
 
   # Update sdk tools to latest version and install/update components
   # Create and start emulator
-  - echo no | avdmanager create avd -n acib -k "$EMULATOR" -f --abi "$ABI" --tag "$TAG"
-  - emulator -avd acib -engine classic -no-window -verbose -qemu -m 512 &
+  #- echo no | avdmanager create avd -n acib -k "$EMULATOR" -f --abi "$ABI" --tag "$TAG"
+  #- emulator -avd acib -engine classic -no-window -verbose -qemu -m 512 &
 
 before_script:
   # Wait for emulator fully-booted and disable animations
@@ -43,7 +43,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - ./gradlew build connectedCheck
+  - ./gradlew build
 
 after_script:
   - cat ${TRAVIS_BUILD_DIR}/*/build/outputs/androidTest-results/connected/*
