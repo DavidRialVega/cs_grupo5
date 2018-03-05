@@ -1,3 +1,4 @@
+dist: trusty
 sudo: false
 language: android
 android:
@@ -14,3 +15,12 @@ android:
 
 script:
   - ./gradlew build --stacktrace
+addons:
+  sonarcloud:
+    organization: "ramonspain-github"
+    token:
+      secure: 538c6ed0a5eb4e4c046be86bad9ad9a55515bdbb
+    branches:
+      -master
+script:
+  - sonar-scaner
