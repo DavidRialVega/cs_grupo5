@@ -23,4 +23,4 @@ addons:
     branches:
       -master
 script:
-  - sonar-scaner
+  - sonar-scanner
