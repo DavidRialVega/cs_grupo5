@@ -13,8 +13,8 @@ android:
     - extra-android-support
     - extra-android-m2repository
 
-script:
-  - ./gradlew build --stacktrace
+#script:
+ # - ./gradlew build --stacktrace
 addons:
   sonarcloud:
     organization: "ramonspain-github"
