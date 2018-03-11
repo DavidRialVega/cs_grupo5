@@ -14,7 +14,7 @@ android:
     - extra-android-m2repository
 
 script:
-  - ./gradlew build --stacktrace  
+  - ./gradlew build --stacktrace
 addons:
   sonarcloud:
     organization: "ramonspain-github"
@@ -24,3 +24,4 @@ addons:
       -master
 script:
   - sonar-scanner
+
