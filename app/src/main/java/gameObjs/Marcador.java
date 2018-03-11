@@ -13,7 +13,10 @@ public class Marcador extends View{
 
 
     private Paint paint;
-    private int x, y, puntosDer, puntosIzq;
+    private int x;
+    private int y;
+    private int puntosDer;
+    private int puntosIzq;
 
     public Marcador(Context context, int posX, int posY){
         super(context);
@@ -24,8 +27,10 @@ public class Marcador extends View{
     }
 
     public void sumarPuntos(){
+
         this.puntosDer =  puntosDer+1;
     }
+    @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
         paint.setColor(Color.BLUE);

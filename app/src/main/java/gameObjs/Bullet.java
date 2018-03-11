@@ -14,17 +14,23 @@ import android.view.View;
 public class Bullet extends View {
 
     private Paint paint;
-    private int xSpeed, ySpeed, x, y, rad, dWidth, dHeight;
+    private int xSpeed;
+    private int ySpeed;
+    private int x;
+    private int y;
+    private int rad;
+    private int dWidth;
+    private int dHeight;
     private RectF rect;
     private boolean fueraDePantalla;
     double v;
 
-    private double angle;
+    //private double angle;
     public Bullet (Context context, int dispW, int dispH, int x, int y, int xFin, int yFin) {
         super(context);
         this.x = x;
         this.y = y;
-        angle = Math.atan2((double)yFin - y,(double) xFin - x);
+        double angle = Math.atan2((double)yFin - y,(double) xFin - x);
         fueraDePantalla = false;
         dWidth = dispW;
         dHeight = dispH;
@@ -39,9 +45,6 @@ public class Bullet extends View {
     }
 
     public boolean move (Ball ball) {
-       /* x = (int) ( Math.cos(angle) * v);
-        y = (int) ((int) Math.sin(angle) * v);*/
-
         x += xSpeed;
         y += ySpeed;
 
@@ -57,6 +60,7 @@ public class Bullet extends View {
         return false;
     }
 
+    @Override
     public void draw (Canvas canvas) {
         super.draw(canvas);
         paint.setColor(Color.RED);

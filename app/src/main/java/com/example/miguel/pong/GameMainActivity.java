@@ -1,18 +1,12 @@
 package com.example.miguel.pong;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+
 import android.graphics.Point;
-import android.os.AsyncTask;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
-import android.support.v4.view.MotionEventCompat;
-import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
