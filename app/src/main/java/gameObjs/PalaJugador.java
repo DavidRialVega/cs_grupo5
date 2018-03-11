@@ -2,16 +2,16 @@ package gameObjs;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class PalaJugador extends PalaGeneral{
 
-    private int ySpeed, xSpeed, antX, antY;
+    private int ySpeed;
+    private int xSpeed;
+    private int antX;
+    private int antY;
     private int dWidth, dHeight;
     private RectF rect;
     private int maxBullets;
@@ -71,18 +71,11 @@ public class PalaJugador extends PalaGeneral{
 
         antX = x;
         antY = y;
-
-        //Choques con la pelota
-
-        /*if (rect.intersect(ball.getRect())) {
-            ball.touched();
-            return true;
-        }*/
-
         rect.set(getPosX(), getPosY(), (float)getPosX() + getW(), (float)getPosY() + getH());
     }
 
     public RectF getRect (){
+
         return this.rect;
     }
 

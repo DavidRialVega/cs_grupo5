@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 
@@ -16,10 +15,11 @@ public class Lienzo extends View  {
     private Ball ball;
     private Paint paint;
     private PalaJugador jugador;
-    //private Marcador scoreBoard;
 
-    private int width, height;
-    boolean gameOver, win;
+    private int width;
+    private int height;
+    boolean gameOver;
+    boolean win;
 
     public Lienzo(Context context, int w, int h) {
         super(context);
@@ -41,6 +41,7 @@ public class Lienzo extends View  {
     }
 
 
+    @Override
     public void onDraw (Canvas canvas) {
         super.onDraw(canvas);
         if (!gameOver) {

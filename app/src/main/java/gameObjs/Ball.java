@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 
 import java.util.Random;
@@ -13,79 +13,14 @@ import java.util.Random;
 
 public class Ball extends View {
 
-    /*private int dWidth, dHeight;
-    private int x, y, rad;
-    private int xSpeed, ySpeed;
-    private Paint paint;
-    private int lifes;
-    private RectF rect;
-    int [] color = {Color.rgb(200, 20, 20), Color.rgb(255, 217 , 15), Color.rgb(30, 180, 30)}; //Rojo, amarillo y verde
 
-    public Ball(Context context, int dispW, int dispH) {
-        super(context);
-
-        dWidth = dispW;
-        dHeight = dispH;
-        rad = 65;
-
-
-        Random r = new Random();
-        if (r.nextBoolean()){ //Para elegir si ponerlo a la izq o la dch de la pantalla. True es izquierda y false derecha
-            setX(r.nextInt((dWidth/2) - (dWidth/8)) ); // Zona "segura" en las inmediaciones de la pelota
-        } else {
-            setX(r.nextInt((dWidth/2) - (dWidth/8)) + (dWidth/2) + (dWidth/8) - (rad + 2)  );
-        }
-
-        setY(r.nextInt(dHeight - rad));
-
-        xSpeed = (r.nextInt(6)/2) - 3;
-        ySpeed = (r.nextInt(6)/2) - 3;
-
-        rect = new RectF(x, y , x+rad, y+ rad);
-
-        lifes = 3;
-        paint = new Paint();
-    }
-
-    public int getPosX () {
-        return x;
-    }
-    public int getPosY() {
-        return y;
-    }
-    public int getLifes(){
-        return lifes;
-    }
-
-    public void draw(Canvas canvas){
-        super.draw(canvas);
-        paint.setColor(color[lifes-1]);
-        paint.setAntiAlias(true);
-        canvas.drawOval(rect, paint);
-    }
-
-    public boolean move (PalaJugador pala){
-        if ((y > 0) && (y + rad < dHeight)) { //Si no se sale de los bordes horizontales se mueve
-            this.y = y;
-            rect.set(x, y , x+rad, y+ rad);
-        }
-
-        if (rect.intersect(pala.getRect())) {
-            //ball.touched();
-            return true;
-        }
-        return false;
-    }
-
-
-
-    public void touched (){
-        lifes--;
-    }
-*/
-    private int dWidth, dHeight;
-    private int x, y, rad;
-    private int xSpeed, ySpeed;
+    private int dWidth;
+    private int dHeight;
+    private int x;
+    private int y;
+    private int rad;
+    private int xSpeed;
+    private int ySpeed;
     private Paint paint;
     private boolean cubo;
     private RectF rect;
@@ -116,6 +51,7 @@ public class Ball extends View {
         return y;
     }
 
+    @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
         paint.setColor(Color.GRAY);
@@ -134,7 +70,8 @@ public class Ball extends View {
         int nextPosX = x + xSpeed;
         int nextPosY = y + ySpeed;
 
-        int numero = (int) (Math.random() * (dWidth-rad)); // Para aparecer por cualquier lado;
+        // Para aparecer por cualquier lado;
+        int numero = (int) (Math.random() * (dWidth-rad));
         int opcion = (int) (Math.random() * 4)+1;
         //Choques laterales
         if ((nextPosX >= dWidth - rad) || (nextPosX <= 0)){
@@ -177,7 +114,6 @@ public class Ball extends View {
         opcion = (int) (Math.random() * 4)+1;
         //Choques superiores
         if ((nextPosY >= dHeight - rad) || (nextPosY <= 0)) {
-            //ySpeed = -ySpeed;
             xSpeed = -xSpeed;
             if((nextPosY <= 0)){
                 if (opcion == 1) {
@@ -231,13 +167,7 @@ public class Ball extends View {
                 toque=true;
             }
         }
-        /*else // No puede chocar con dos palas a la vez
-            //Choque pala derecha
-            if ((nextPosX + rad >= right.getPosX()) && (nextPosX + rad <= right.getPosX() + right.getW())) { //comprobacion de chqoue en las x
-                if ((nextPosY <= right.getPosY() + right.getH()) && (nextPosY >= right.getPosY())){  //comprobacion de choque en las y
-                    xSpeed = - xSpeed;
-                }
-            }*/
+
 
         //avance de la bola
         x += xSpeed;
