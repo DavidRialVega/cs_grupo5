@@ -1,18 +1,27 @@
-language: java
+dist: trusty
 sudo: false
-install: true
+language: android
+android:
+  components:
+     # Update Android SDK Tools
+    - tools
+
+    - build-tools-26.0.2
+    - android-26
+
+    # Support library
+    - extra-android-support
+    - extra-android-m2repository
+
+script:
+  - ./gradlew build --stacktrace
 addons:
   sonarcloud:
     organization: "ramonspain-github"
     token:
-      secure: "538c6ed0a5eb4e4c046be86bad9ad9a55515bdbb"
-jdk:
-  - oraclejdk8
+      secure: 538c6ed0a5eb4e4c046be86bad9ad9a55515bdbb
+    branches:
+      -master
 script:
-  - ./gradlew sonarqube
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
-    - '$HOME/.gradle'
-    - '.gradle'
+  - sonar-scanner
+
