@@ -49,25 +49,25 @@ public class Lienzo extends View  {
             canvas.drawPaint(paint);
             jugador.draw(canvas);
             ball.draw(canvas);
-            paint.setTextSize(height/20);
+            paint.setTextSize((float)height/20);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(Color.RED);
-            canvas.drawText("Balas: " + jugador.balasRestantes(), width / 2, height / 15, paint);
+            canvas.drawText("Balas: " + jugador.balasRestantes(), (float)width / 2, (float)height / 15, paint);
 
         } else {
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.WHITE);
             canvas.drawPaint(paint);
             paint.setAntiAlias(true);
-            paint.setTextSize(height/8);
+            paint.setTextSize((float)height/8);
             paint.setTextAlign(Paint.Align.CENTER);
             if (win){
                 paint.setColor(Color.GREEN);
-                canvas.drawText("VICTORIA!", width / 2, height / 2, paint);
+                canvas.drawText("VICTORIA!", (float)width / 2, (float)height / 2, paint);
                 win = false;
             } else {
                 paint.setColor(Color.BLUE);
-                canvas.drawText("GAME OVER...", width / 2, height / 2, paint);
+                canvas.drawText("GAME OVER...", (float)width / 2, (float)height / 2, paint);
             }
         }
     }

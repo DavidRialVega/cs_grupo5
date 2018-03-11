@@ -79,7 +79,7 @@ public class PalaJugador extends PalaGeneral{
             return true;
         }*/
 
-        rect.set(getPosX(), getPosY(), getPosX() + getW(), getPosY() + getH());
+        rect.set(getPosX(), getPosY(), (float)getPosX() + getW(), (float)getPosY() + getH());
     }
 
     public RectF getRect (){
