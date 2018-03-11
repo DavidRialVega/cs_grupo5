@@ -20,7 +20,7 @@ import java.util.TimerTask;
 import gameObjs.Lienzo;
 
 public class GameMainActivity extends AppCompatActivity {
-
+    //Clase que crea el lienzo y la funcion pausa
     private Lienzo lienzo;
     private boolean estaEnPausa;
 
