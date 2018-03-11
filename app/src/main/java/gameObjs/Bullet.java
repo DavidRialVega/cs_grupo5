@@ -24,7 +24,7 @@ public class Bullet extends View {
         super(context);
         this.x = x;
         this.y = y;
-        angle = Math.atan2(yFin - y, xFin - x);
+        angle = Math.atan2((double)yFin - y, (double)xFin - x);
         fueraDePantalla = false;
         dWidth = dispW;
         dHeight = dispH;
@@ -49,7 +49,7 @@ public class Bullet extends View {
             fueraDePantalla = true;
         }
 
-        rect.set(x, y , x+rad, y+ rad);
+        rect.set(x, y , (float)x+rad, (float)y+ rad);
 
         if (rect.intersect(ball.getRect())) {
             return true;

@@ -242,7 +242,7 @@ public class Ball extends View {
         //avance de la bola
         x += xSpeed;
         y += ySpeed;
-        rect.set(x, y , x+rad, y+ rad);
+        rect.set(x, y , (float)x+rad, (float)y+ rad);
         return  toque;
     }
 

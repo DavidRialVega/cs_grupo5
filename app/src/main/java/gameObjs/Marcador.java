@@ -30,7 +30,7 @@ public class Marcador extends View{
         super.draw(canvas);
         paint.setColor(Color.BLUE);
         paint.setAntiAlias(true);
-        canvas.drawText(puntosIzq + " || " +puntosDer, x+10, y+10, paint);
+        canvas.drawText(puntosIzq + " || " +puntosDer, (float)x+10, (float)y+10, paint);
     }
 
 }
