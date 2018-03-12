@@ -3,7 +3,7 @@ sudo: false
 install: true
 addons:
   sonarcloud:
-    organization: "your_organization_key"
+    organization: "ramonspain-github"
     token:
 
       secure: 538c6ed0a5eb4e4c046be86bad9ad9a55515bdbb
