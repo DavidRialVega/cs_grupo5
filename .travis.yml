@@ -3,9 +3,11 @@ sudo: false
 install: true
 addons:
   sonarcloud:
-    organization: "your_organization_key"
+    organization: "ramonspain-github"
     token:
-      secure: "your_token_encrypted_with_travis_encrypt_tool"
+
+      secure: 538c6ed0a5eb4e4c046be86bad9ad9a55515bdbb
+
 jdk:
   - oraclejdk8
 script:
