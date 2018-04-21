@@ -44,6 +44,7 @@ public class Ball extends View {
         paint = new Paint();
     }
 
+
     public int getPosX () {
         return x;
     }
@@ -63,6 +64,8 @@ public class Ball extends View {
             canvas.drawOval(rect, paint);
         }
     }
+
+
 
     public boolean move(PalaJugador left){
         boolean toque;

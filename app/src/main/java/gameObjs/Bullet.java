@@ -24,6 +24,8 @@ public class Bullet extends View {
     private RectF rect;
     private boolean fueraDePantalla;
     double v;
+    int xFin;
+    int yFin;
 
     //private double angle;
     public Bullet (Context context, int dispW, int dispH, int x, int y, int xFin, int yFin) {
@@ -38,19 +40,41 @@ public class Bullet extends View {
         rad = 20;
         v = 0.01;
 
-        xSpeed = (int) ( 1 + ((xFin - x) * v));
-        ySpeed = (int) ( 1+ ((yFin - y) * v));
+
+        //xSpeed = (int) ( 1 + ((xFin - x) * v));
+        xSpeed= calculateSpeedX(this.x);
+        //ySpeed = (int) ( 1+ ((yFin - y) * v));
+        ySpeed = calculateSpeedY(this.y);
 
         rect = new RectF(x, y, x+rad, y+rad);
+    }
+
+    public int calculateSpeedX(int x){
+        int speedX;
+        speedX = ((int) ( 1 + ((this.xFin - x) * this.v)));
+        return speedX;
+    }
+    public int calculateSpeedY(int y){
+        int speedY;
+        speedY = ((int) ( 1 + ((this.yFin - x) * this.v)));
+        return speedY;
+    }
+
+    public boolean offScreen (int x, int y){
+        if ((y < 0) || (y + rad > dHeight) || (x < 0) || (x + rad > dWidth)) { //Si no se sale de los bordes horizontales se mueve
+            return true;
+        }
+        return false;
     }
 
     public boolean move (Ball ball) {
         x += xSpeed;
         y += ySpeed;
 
-        if ((y < 0) || (y + rad > dHeight) || (x < 0) || (x + rad > dWidth)) { //Si no se sale de los bordes horizontales se mueve
-            fueraDePantalla = true;
-        }
+        //if ((y < 0) || (y + rad > dHeight) || (x < 0) || (x + rad > dWidth)) { //Si no se sale de los bordes horizontales se mueve
+        //    fueraDePantalla = true;
+        //}
+        fueraDePantalla=offScreen(x,y);
 
         rect.set(x, y , (float)x+rad, (float)y+ rad);
 

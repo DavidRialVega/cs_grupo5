@@ -9,7 +9,17 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "cucumber.api.android.CucumberInstrumentation"
+    }
+    sourceSets {
+        androidTest {
+            assets.srcDirs = ['src/androidTest/assets']
+        }
+    }
+    testOptions{
+        reportDir = "$project.buildDir/result/report"
+        resultsDir ="$project.buildDir/result"
     }
     buildTypes {
         release {
@@ -36,4 +46,12 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
+    androidTestCompile group: 'info.cukes', name: 'cucumber-java', version: '1.2.2'
+    androidTestCompile group: 'info.cukes', name: 'cucumber-core', version: '1.2.2'
+    androidTestCompile group: 'info.cukes', name: 'cucumber-html', version: '0.2.3'
+    androidTestCompile group: 'info.cukes', name: 'cucumber-jvm-deps', version: '1.0.3'
+    androidTestCompile group: 'info.cukes', name: 'gherkin', version: '2.12.2'
+    androidTestCompile 'info.cukes:cucumber-android:1.2.0@jar'
+    androidTestCompile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.2'
+
 }
